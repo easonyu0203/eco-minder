@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "51663830731",
+    "project_id": "eco-minder-pervasive",
+    "storage_bucket": "eco-minder-pervasive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51663830731:android:b7c2878d81ef4cc038254e",
+        "android_client_info": {
+          "package_name": "com.example.eco_minder_flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51663830731-i1e7fiob5romu66de2oi2es1ggmbej5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb-I53HJfjN9jHvClO9AwakIvbR9Iopc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51663830731-i1e7fiob5romu66de2oi2es1ggmbej5s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51663830731-k4a2ejvfsvv2etcums8oac7bn6dve93b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.squid99.easeNote"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51663830731:android:5bbf079a090546c638254e",
+        "android_client_info": {
+          "package_name": "com.squid99.ease_note"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51663830731-i1e7fiob5romu66de2oi2es1ggmbej5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb-I53HJfjN9jHvClO9AwakIvbR9Iopc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51663830731-i1e7fiob5romu66de2oi2es1ggmbej5s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51663830731-k4a2ejvfsvv2etcums8oac7bn6dve93b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.squid99.easeNote"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
