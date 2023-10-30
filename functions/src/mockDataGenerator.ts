@@ -17,8 +17,8 @@ interface DataPoint<T> {
 }
 
 export const createMockData = functions.https.onCall(
-  async (request: MockDataRequest, context) => {
-    const { id, timeSpan, intervalUnit } = request;
+  async (data: MockDataRequest, context) => {
+    const { id, timeSpan, intervalUnit } = data;
 
     const getIntervalMillis = () => {
       switch (intervalUnit) {
@@ -56,17 +56,16 @@ export const createMockData = functions.https.onCall(
       ),
       location_sensor: generateDataForSensor(() =>
         JSON.stringify({
-          latitude: (Math.random() * 180 - 90).toFixed(6),
-          longitude: (Math.random() * 360 - 180).toFixed(6),
+          latitude: randomFloat(22, 30).toFixed(6),
+          longitude: randomFloat(22, 30).toFixed(6),
         })
       ),
-      temp_sensor: generateDataForSensor(() =>
-        (Math.random() * 40 - 10).toFixed(2)
+      temp_sensor: generateDataForSensor(() => randomFloat(22, 30).toFixed(2)),
+      outdoor_temp_sensor: generateDataForSensor(() =>
+        randomFloat(22, 30).toFixed(2)
       ),
-      light_sensor: generateDataForSensor(() =>
-        (Math.random() * 100000).toFixed(2)
-      ),
-      iaq_sensor: generateDataForSensor(() => (Math.random() * 500).toFixed(2)),
+      light_sensor: generateDataForSensor(() => randomFloat(0, 300).toFixed(2)),
+      iaq_sensor: generateDataForSensor(() => randomFloat(0, 500).toFixed(2)),
     };
 
     const db = admin.firestore();
@@ -84,3 +83,7 @@ export const createMockData = functions.https.onCall(
     return { success: true };
   }
 );
+
+function randomFloat(min: number, max: number): number {
+  return Math.random() * (max - min) + min;
+}

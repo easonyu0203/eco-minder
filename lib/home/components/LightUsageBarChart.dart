@@ -39,7 +39,7 @@ class _LightUsageBarChartState extends State<LightUsageBarChart> {
       x: x,
       barRods: [
         BarChartRodData(
-          toY: isTouched ? y + 0.02 : y,
+          toY: isTouched ? y + 0.5 : y,
           color: isTouched ? widget.touchedBarColor : barColor,
           width: width,
           borderSide: isTouched
@@ -47,7 +47,7 @@ class _LightUsageBarChartState extends State<LightUsageBarChart> {
               : const BorderSide(color: Colors.white, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            toY: 1,
+            toY: 24,
             color: widget.barBackgroundColor,
           ),
         ),
@@ -59,19 +59,19 @@ class _LightUsageBarChartState extends State<LightUsageBarChart> {
   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
         switch (i) {
           case 0:
-            return makeGroupData(0, 0.5, isTouched: i == touchedIndex);
+            return makeGroupData(0, 12, isTouched: i == touchedIndex);
           case 1:
-            return makeGroupData(1, 0.5, isTouched: i == touchedIndex);
+            return makeGroupData(1, 12, isTouched: i == touchedIndex);
           case 2:
-            return makeGroupData(2, 0.5, isTouched: i == touchedIndex);
+            return makeGroupData(2, 12, isTouched: i == touchedIndex);
           case 3:
-            return makeGroupData(3, 0.5, isTouched: i == touchedIndex);
+            return makeGroupData(3, 12, isTouched: i == touchedIndex);
           case 4:
-            return makeGroupData(4, 0.5, isTouched: i == touchedIndex);
+            return makeGroupData(4, 12, isTouched: i == touchedIndex);
           case 5:
-            return makeGroupData(5, 0.5, isTouched: i == touchedIndex);
+            return makeGroupData(5, 12, isTouched: i == touchedIndex);
           case 6:
-            return makeGroupData(6, 0.5, isTouched: i == touchedIndex);
+            return makeGroupData(6, 12, isTouched: i == touchedIndex);
           default:
             return throw Error();
         }
@@ -120,7 +120,7 @@ class _LightUsageBarChartState extends State<LightUsageBarChart> {
               ),
               children: <TextSpan>[
                 TextSpan(
-                  text: (rod.toY - 0.02).toString(),
+                  text: "${rod.toY - 0.5} hr",
                   style: TextStyle(
                     color: widget.touchedBarColor,
                     fontSize: 16,

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:eco_minder_flutter_app/firebase_options.dart';
 import 'package:eco_minder_flutter_app/home/home.dart';
 import 'package:eco_minder_flutter_app/login/login.dart';
@@ -17,11 +19,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  if (kDebugMode) {
-    // FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
-    // FirebaseFunctions.instance.useFunctionsEmulator('localhost', 5001);
-    // FirebaseStorage.instance.useStorageEmulator('localhost', 9199);
-  }
+  FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+  FirebaseFunctions.instance.useFunctionsEmulator('localhost', 5001);
 
   runApp(const MyApp());
 }
@@ -64,6 +63,7 @@ class _MyAppState extends State<MyApp> {
     return PersistentTabView(
       context,
       controller: _controller,
+      backgroundColor: Color.fromRGBO(255, 240, 215, 1),
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(10.0),
         colorBehindNavBar: Colors.white,
@@ -84,9 +84,9 @@ class _MyAppState extends State<MyApp> {
     return PersistentBottomNavBarItem(
       icon: Icon(icon),
       title: title,
-      activeColorPrimary: Theme.of(context).primaryColor.withOpacity(0.8),
+      activeColorPrimary: Theme.of(context).primaryColor.withOpacity(1),
       activeColorSecondary:
-          Theme.of(context).colorScheme.secondary.withOpacity(0.8),
+          Theme.of(context).colorScheme.secondary.withOpacity(1),
     );
   }
 }

@@ -1,17 +1,10 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { Collections } from "./app_contants";
 
 export const deleteSensorData = functions.https.onCall(
   async (data, context) => {
     const db = admin.firestore();
-
-    const collections = [
-      "body_sensor",
-      "location_sensor",
-      "temp_sensor",
-      "light_sensor",
-      "iaq_sensor",
-    ];
 
     // Helper function to delete all documents from a collection
     const deleteCollection = async (collectionPath: string) => {
@@ -28,7 +21,7 @@ export const deleteSensorData = functions.https.onCall(
     };
 
     // Delete each collection
-    for (const collectionPath of collections) {
+    for (const collectionPath of Collections) {
       await deleteCollection(collectionPath);
     }
 

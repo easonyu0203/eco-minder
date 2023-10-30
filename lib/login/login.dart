@@ -1,4 +1,5 @@
 import 'package:eco_minder_flutter_app/services/FireAuth.dart';
+import 'package:eco_minder_flutter_app/services/FireStore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Column(
               children: const [
                 Text(
-                  "Ease Note",
+                  "Eco Minder",
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
