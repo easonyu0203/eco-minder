@@ -61,17 +61,17 @@ class _LightUsageBarChartState extends State<LightUsageBarChart> {
           case 0:
             return makeGroupData(0, 12, isTouched: i == touchedIndex);
           case 1:
-            return makeGroupData(1, 12, isTouched: i == touchedIndex);
+            return makeGroupData(1, 14, isTouched: i == touchedIndex);
           case 2:
-            return makeGroupData(2, 12, isTouched: i == touchedIndex);
+            return makeGroupData(2, 11, isTouched: i == touchedIndex);
           case 3:
-            return makeGroupData(3, 12, isTouched: i == touchedIndex);
+            return makeGroupData(3, 5, isTouched: i == touchedIndex);
           case 4:
-            return makeGroupData(4, 12, isTouched: i == touchedIndex);
+            return makeGroupData(4, 10, isTouched: i == touchedIndex);
           case 5:
-            return makeGroupData(5, 12, isTouched: i == touchedIndex);
+            return makeGroupData(5, 18, isTouched: i == touchedIndex);
           case 6:
-            return makeGroupData(6, 12, isTouched: i == touchedIndex);
+            return makeGroupData(6, 14, isTouched: i == touchedIndex);
           default:
             return throw Error();
         }

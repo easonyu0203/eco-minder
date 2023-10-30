@@ -40,7 +40,6 @@ dependencies:
   firebase_auth: ^4.11.1
   cloud_firestore: ^4.11.0
   cloud_functions: ^4.5.1
-  firebase_storage: ^11.3.1
   firebase_core: ^2.19.0
   google_sign_in: ^6.1.5
   smooth_page_indicator: ^1.1.0
@@ -50,6 +49,7 @@ dependencies:
   flutter_guid: ^0.3.1
   fl_chart: ^0.62.0
   rxdart: ^0.27.7
+  firebase_messaging: ^14.7.2
 
 dev_dependencies:
   flutter_test:

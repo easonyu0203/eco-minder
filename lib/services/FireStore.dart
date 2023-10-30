@@ -86,7 +86,7 @@ class FireStoreService {
           .set(myUser.toJson(), SetOptions(merge: true));
 
       // TODO: Delete this
-      await addEcoMinder(uid, "eco_minder_1");
+      await addEcoMinder(uid, "1");
     } catch (e) {
       throw e;
     }

@@ -18,9 +18,11 @@ class _LoginScreenState extends State<LoginScreen> {
       isLoading = true;
     });
     await loginMethod();
-    setState(() {
-      isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override

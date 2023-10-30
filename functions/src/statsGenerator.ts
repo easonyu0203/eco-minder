@@ -13,8 +13,9 @@ interface Response {
   iaq_sensor?: number;
 }
 
-export const getSensorsSnapshot = functions.https.onCall(
-  async (data, context) => {
+export const getSensorsSnapshot = functions
+  .region("australia-southeast1")
+  .https.onCall(async (data, context) => {
     let results: Response = {};
 
     // Loop through each collection and get the latest document based on timestamp
@@ -31,5 +32,4 @@ export const getSensorsSnapshot = functions.https.onCall(
     }
 
     return results;
-  }
-);
+  });

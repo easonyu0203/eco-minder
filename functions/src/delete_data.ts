@@ -2,8 +2,9 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { Collections } from "./app_contants";
 
-export const deleteSensorData = functions.https.onCall(
-  async (data, context) => {
+export const deleteSensorData = functions
+  .region("australia-southeast1")
+  .https.onCall(async (data, context) => {
     const db = admin.firestore();
 
     // Helper function to delete all documents from a collection
@@ -26,5 +27,4 @@ export const deleteSensorData = functions.https.onCall(
     }
 
     return { success: true, message: "Collections deleted successfully." };
-  }
-);
+  });

@@ -20,18 +20,41 @@ class EnergyUsageChart extends StatelessWidget {
     );
     Widget text;
     switch (value.toInt()) {
+      case 0:
+        text = const Text('26th    ', style: style);
+        break;
+      case 1:
+        text = const Text('27th    ', style: style);
+        break;
       case 2:
-        text = const Text('10/31    ', style: style);
+        text = const Text('28th    ', style: style);
+        break;
+      case 3:
+        text = const Text('29th    ', style: style);
+        break;
+      case 4:
+        text = const Text('30th    ', style: style);
         break;
       case 5:
-        text = const Text('JUN', style: style);
+        text = const Text('31th    ', style: style);
         break;
-      case 8:
-        text = const Text('SEP', style: style);
+      case 6:
+        text = const Text('1th    ', style: style);
         break;
       default:
-        text = const Text('', style: style);
-        break;
+        throw Error();
+      // case 2:
+      //   text = const Text('10/31    ', style: style);
+      //   break;
+      // case 5:
+      //   text = const Text('JUN', style: style);
+      //   break;
+      // case 8:
+      //   text = const Text('SEP', style: style);
+      //   break;
+      // default:
+      //   text = const Text('', style: style);
+      //   break;
     }
 
     return SideTitleWidget(
@@ -114,19 +137,19 @@ class EnergyUsageChart extends StatelessWidget {
         border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: 11,
+      maxX: 6,
       minY: 0,
       maxY: 6,
       lineBarsData: [
         LineChartBarData(
           spots: const [
             FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
+            FlSpot(1, 2),
+            FlSpot(2, 5),
+            FlSpot(3, 3.1),
+            FlSpot(4, 4),
+            FlSpot(5, 3),
+            FlSpot(6, 4),
           ],
           isCurved: true,
           gradient: LinearGradient(

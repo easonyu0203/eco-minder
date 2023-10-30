@@ -16,8 +16,9 @@ interface DataPoint<T> {
   timestamp: Date;
 }
 
-export const createMockData = functions.https.onCall(
-  async (data: MockDataRequest, context) => {
+export const createMockData = functions
+  .region("australia-southeast1")
+  .https.onCall(async (data: MockDataRequest, context) => {
     const { id, timeSpan, intervalUnit } = data;
 
     const getIntervalMillis = () => {
@@ -81,8 +82,7 @@ export const createMockData = functions.https.onCall(
 
     await batch.commit();
     return { success: true };
-  }
-);
+  });
 
 function randomFloat(min: number, max: number): number {
   return Math.random() * (max - min) + min;

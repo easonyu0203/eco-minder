@@ -1,3 +1,4 @@
+import 'package:eco_minder_flutter_app/services/FireMessage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -30,6 +31,8 @@ class FireAuthService {
       );
 
       await FirebaseAuth.instance.signInWithCredential(authCredential);
+
+      await FireMessageService().checkAndRequestNotificationPermissions();
     } on FirebaseAuthException catch (e) {
       // handle error
       throw e;

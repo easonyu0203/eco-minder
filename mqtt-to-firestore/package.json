@@ -1,7 +1,7 @@
 {
   "name": "mqtt-to-firestore",
   "scripts": {
-    "start": "npx ts-node src/mqttToFirestore.ts"
+    "start": "npx ts-node src/main.ts"
   },
   "engines": {
     "node": "18"
