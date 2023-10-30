@@ -48,6 +48,7 @@ dependencies:
   json_annotation: ^4.8.1
   flutter_blue_plus: ^1.19.2
   flutter_guid: ^0.3.1
+  fl_chart: ^0.62.0
 
 dev_dependencies:
   flutter_test:
