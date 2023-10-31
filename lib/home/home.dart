@@ -1,10 +1,13 @@
 import 'package:eco_minder_flutter_app/home/components/EnergyUsageChart.dart';
 import 'package:eco_minder_flutter_app/home/components/LightUsageBarChart.dart';
-import 'package:eco_minder_flutter_app/home/components/SensorCard.dart';
+import 'package:eco_minder_flutter_app/share/MyCard.dart';
+import 'package:eco_minder_flutter_app/sensor/sensor.dart';
+import 'package:eco_minder_flutter_app/share/SensorCard.dart';
 import 'package:eco_minder_flutter_app/services/FireStore.dart';
 import 'package:eco_minder_flutter_app/services/models.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -65,36 +68,41 @@ class HomeScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: sensors
           .map((sensor) =>
-              Expanded(child: HomeCard(child: _buildSensorCard(sensor))))
+              Expanded(child: MyCard(child: _buildSensorCard(context, sensor))))
           .toList(),
     );
   }
 
-  Widget _buildSensorCard(SensorInfo sensor) {
-    return SensorCard(
+  Widget _buildSensorCard(BuildContext context, SensorInfo sensor) {
+    return SensorCardData(
       colorId: sensor.colorId,
       value: _formatDouble(sensor.value),
       title: sensor.title,
       iconData: sensor.icon,
+      onPress: () => PersistentNavBarNavigator.pushNewScreen(context,
+          screen: SensorScreen()),
     );
   }
 
   Widget _buildChartCard(
       BuildContext context, String title, Widget chartWidget) {
-    return HomeCard(
-      child: Column(
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSecondary,
+    return MyCard(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          SizedBox(height: 200, child: chartWidget),
-        ],
+            const SizedBox(height: 10),
+            SizedBox(height: 200, child: chartWidget),
+          ],
+        ),
       ),
     );
   }
@@ -117,24 +125,4 @@ class SensorInfo {
   final IconData icon;
 
   SensorInfo(this.colorId, this.value, this.title, this.icon);
-}
-
-class HomeCard extends StatelessWidget {
-  final Widget? child;
-  const HomeCard({super.key, this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(7.0),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface.withOpacity(0.7),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: child,
-      ),
-    );
-  }
 }
