@@ -57,12 +57,12 @@ export const createMockData = functions
       body_sensor: generateDataForSensor(() =>
         Math.random() > 0.5 ? "true" : "false"
       ),
-      location_sensor: generateDataForSensor(() =>
-        JSON.stringify({
-          latitude: randomFloat(22, 30).toFixed(6),
-          longitude: randomFloat(22, 30).toFixed(6),
-        })
-      ),
+      location_sensor: generateDataForSensor(() => {
+        return {
+          latitude: "-33.89201546932559",
+          longitude: "151.19042141925632",
+        };
+      }),
       temp_sensor: generateDataForSensor(() => randomFloat(22, 30).toFixed(2)),
       outdoor_temp_sensor: generateDataForSensor(() =>
         randomFloat(22, 30).toFixed(2)

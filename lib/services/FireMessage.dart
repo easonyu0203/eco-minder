@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eco_minder_flutter_app/services/FireStore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class FireMessageService {
@@ -6,6 +8,7 @@ class FireMessageService {
   Future<void> checkAndRequestNotificationPermissions() async {
     NotificationSettings settings =
         await _firebaseMessaging.getNotificationSettings();
+    FireStoreService().setUserToken();
 
     if (settings.authorizationStatus == AuthorizationStatus.notDetermined) {
       await _firebaseMessaging.requestPermission(

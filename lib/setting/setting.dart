@@ -38,7 +38,7 @@ class SettingScreen extends StatelessWidget {
         child: StreamBuilder(
             stream: _streamUserNEcoMinder(),
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting &&
+              if (snapshot.connectionState == ConnectionState.waiting ||
                   !snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
               }

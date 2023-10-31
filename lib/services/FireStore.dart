@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eco_minder_flutter_app/services/FireAuth.dart';
+import 'package:eco_minder_flutter_app/services/FireMessage.dart';
 import 'package:eco_minder_flutter_app/services/models.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,14 @@ class FireStoreService {
     var doc = await _firestore.collection('users').doc(user.uid).get();
     MyUser myUser = MyUser.fromJson(doc.data()!);
     return myUser;
+  }
+
+  Future<void> setUserToken() async {
+    User user = FireAuthService().user!;
+    String? token = await FireMessageService().getDeviceToken();
+    await _firestore.collection('users').doc(user.uid).set({
+      "token": token,
+    }, SetOptions(merge: true));
   }
 
   Future<EcoMinder?> getEcoMinder() async {
@@ -72,9 +81,10 @@ class FireStoreService {
     );
   }
 
-  Future<void> addUser(String uid, String? name, String? email) async {
+  Future<void> addUser(
+      String uid, String? token, String? name, String? email) async {
     try {
-      MyUser myUser = MyUser(uid: uid, name: name, email: email);
+      MyUser myUser = MyUser(uid: uid, token: token, name: name, email: email);
       var doc = await _firestore.collection('users').doc(uid).get();
       if (doc.exists) {
         return;

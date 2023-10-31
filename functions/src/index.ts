@@ -11,8 +11,9 @@ admin.initializeApp();
 
 import { createMockData } from "./mockDataGenerator";
 import { deleteSensorData } from "./delete_data";
+import { monitorWeather } from "./weather_monitor";
 
-export { createMockData, deleteSensorData };
+export { createMockData, deleteSensorData, monitorWeather };
 
 export const hello = functions.https.onCall((data, context) => {
   return { message: "Hello from Firebase!" };

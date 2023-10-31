@@ -10,9 +10,11 @@ class MyUser {
   final String? eco_minder_id;
   final String? name;
   final String? email;
+  final String? token;
 
   MyUser({
     required this.uid,
+    this.token,
     this.notification_mode = "none",
     this.eco_minder_id,
     this.name,

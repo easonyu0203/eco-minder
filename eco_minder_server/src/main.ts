@@ -14,30 +14,6 @@ import { startMQTTService, stopMQTTService } from "./mqttToFirestoreService";
 
 startMQTTService();
 
-sendNotification();
-setInterval(async () => {
-  await sendNotification();
-}, 5 * 60 * 1000);
-
-async function sendNotification() {
-  // Here, for simplicity, I'm broadcasting to all tokens.
-  // Ideally, you should fetch specific tokens or use topics.
-  const message = {
-    topic: "all",
-    notification: {
-      title: "Hello",
-      body: "World!",
-    },
-  };
-
-  try {
-    const response = await admin.messaging().send(message);
-    console.log("Notification sent successfully:", response);
-  } catch (error) {
-    console.log("Error sending notification:", error);
-  }
-}
-
 process.on("SIGINT", function () {
   stopMQTTService();
   process.exit();

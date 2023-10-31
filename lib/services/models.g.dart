@@ -8,6 +8,7 @@ part of 'models.dart';
 
 MyUser _$MyUserFromJson(Map<String, dynamic> json) => MyUser(
       uid: json['uid'] as String,
+      token: json['token'] as String?,
       notification_mode: json['notification_mode'] as String? ?? "none",
       eco_minder_id: json['eco_minder_id'] as String?,
       name: json['name'] as String?,
@@ -20,6 +21,7 @@ Map<String, dynamic> _$MyUserToJson(MyUser instance) => <String, dynamic>{
       'eco_minder_id': instance.eco_minder_id,
       'name': instance.name,
       'email': instance.email,
+      'token': instance.token,
     };
 
 EcoMinder _$EcoMinderFromJson(Map<String, dynamic> json) => EcoMinder(

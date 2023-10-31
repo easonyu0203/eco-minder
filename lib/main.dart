@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
               // update user profile
               User user = snapshot.data!;
               FireStoreService()
-                  .addUser(user.uid, user.displayName, user.email);
+                  .addUser(user.uid, null, user.displayName, user.email);
 
               return _buildPersistentTabView(context);
             }
