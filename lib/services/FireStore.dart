@@ -182,4 +182,48 @@ class FireStoreService {
       ),
     );
   }
+
+  Stream<List<NumberSensorData>> streamRecentIndoorTemps(int count) {
+    return _firestore
+        .collection('temp_sensor')
+        .orderBy('timestamp', descending: true)
+        .limit(count)
+        .snapshots()
+        .map((event) => event.docs
+            .map((e) => NumberSensorData.fromJson(e.data()))
+            .toList());
+  }
+
+  Stream<List<NumberSensorData>> streamRecentOutdoorTemps(int count) {
+    return _firestore
+        .collection('outdoor_temp_sensor')
+        .orderBy('timestamp', descending: true)
+        .limit(count)
+        .snapshots()
+        .map((event) => event.docs
+            .map((e) => NumberSensorData.fromJson(e.data()))
+            .toList());
+  }
+
+  Stream<List<NumberSensorData>> streamRecentAirQualitys(int count) {
+    return _firestore
+        .collection('iaq_sensor')
+        .orderBy('timestamp', descending: true)
+        .limit(count)
+        .snapshots()
+        .map((event) => event.docs
+            .map((e) => NumberSensorData.fromJson(e.data()))
+            .toList());
+  }
+
+  Stream<List<NumberSensorData>> streamRecentLightLevels(int count) {
+    return _firestore
+        .collection('light_sensor')
+        .orderBy('timestamp', descending: true)
+        .limit(count)
+        .snapshots()
+        .map((event) => event.docs
+            .map((e) => NumberSensorData.fromJson(e.data()))
+            .toList());
+  }
 }

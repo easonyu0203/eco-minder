@@ -117,7 +117,7 @@ class SettingScreen extends StatelessWidget {
             ? [
                 SettingButton(
                   title: "Mild Mode",
-                  iconData: FontAwesomeIcons.bellSlash,
+                  iconData: FontAwesomeIcons.dog,
                   onPressed: () =>
                       FireStoreService().setEcoMinderMode(EcoMinderMode.mild),
                   trailingIconData: ecoMinder.mode ==
@@ -127,7 +127,7 @@ class SettingScreen extends StatelessWidget {
                 ),
                 SettingButton(
                   title: "Alert Mode",
-                  iconData: FontAwesomeIcons.bell,
+                  iconData: FontAwesomeIcons.personRunning,
                   onPressed: () =>
                       FireStoreService().setEcoMinderMode(EcoMinderMode.alert),
                   trailingIconData: ecoMinder.mode ==
@@ -164,7 +164,7 @@ class SettingScreen extends StatelessWidget {
               : null,
         ),
         SettingButton(
-          title: "Medium Frequency Notification",
+          title: "Normal Notification",
           iconData: FontAwesomeIcons.bell,
           onPressed: () =>
               FireStoreService().setNotificationMode(NotificationMode.medium),
@@ -174,7 +174,7 @@ class SettingScreen extends StatelessWidget {
               : null,
         ),
         SettingButton(
-          title: "High Frequency Notification",
+          title: "Lot of Notification",
           iconData: FontAwesomeIcons.exclamation,
           onPressed: () =>
               FireStoreService().setNotificationMode(NotificationMode.high),

@@ -1,5 +1,6 @@
 import 'package:eco_minder_flutter_app/home/components/EnergyUsageChart.dart';
 import 'package:eco_minder_flutter_app/home/components/LightUsageBarChart.dart';
+import 'package:eco_minder_flutter_app/sensor/sensor_param.dart';
 import 'package:eco_minder_flutter_app/share/MyCard.dart';
 import 'package:eco_minder_flutter_app/sensor/sensor.dart';
 import 'package:eco_minder_flutter_app/share/SensorCard.dart';
@@ -40,16 +41,36 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     _buildSensorRow(context, [
-                      SensorInfo(0, sensorDatas.indoorTemp.data, "Indoor Temp.",
-                          FontAwesomeIcons.temperatureHalf),
-                      SensorInfo(1, sensorDatas.outdoorTemp.data,
-                          "Outdoor Temp.", FontAwesomeIcons.sunPlantWilt),
+                      SensorInfo(
+                        0,
+                        sensorDatas.indoorTemp.data,
+                        "Indoor Temp.",
+                        FontAwesomeIcons.temperatureHalf,
+                        () => FireStoreService().streamRecentIndoorTemps(30),
+                      ),
+                      SensorInfo(
+                        1,
+                        sensorDatas.outdoorTemp.data,
+                        "Outdoor Temp.",
+                        FontAwesomeIcons.sunPlantWilt,
+                        () => FireStoreService().streamRecentOutdoorTemps(30),
+                      ),
                     ]),
                     _buildSensorRow(context, [
-                      SensorInfo(2, sensorDatas.lightLevel.data, "Light Level",
-                          FontAwesomeIcons.lightbulb),
-                      SensorInfo(3, sensorDatas.airQuality.data, "Air Quality",
-                          FontAwesomeIcons.sprayCanSparkles),
+                      SensorInfo(
+                        2,
+                        sensorDatas.lightLevel.data,
+                        "Light Level",
+                        FontAwesomeIcons.lightbulb,
+                        () => FireStoreService().streamRecentLightLevels(30),
+                      ),
+                      SensorInfo(
+                        3,
+                        sensorDatas.airQuality.data,
+                        "Air Quality",
+                        FontAwesomeIcons.sprayCanSparkles,
+                        () => FireStoreService().streamRecentAirQualitys(30),
+                      ),
                     ]),
                     _buildChartCard(
                         context, "Past Week Energy Usage", EnergyUsageChart()),
@@ -80,7 +101,12 @@ class HomeScreen extends StatelessWidget {
       title: sensor.title,
       iconData: sensor.icon,
       onPress: () => PersistentNavBarNavigator.pushNewScreen(context,
-          screen: SensorScreen()),
+          screen: SensorScreen(SensorParam(
+            title: sensor.title,
+            icon: sensor.icon,
+            colorId: sensor.colorId,
+            getStream: sensor.getStream,
+          ))),
     );
   }
 
@@ -123,6 +149,7 @@ class SensorInfo {
   final double value;
   final String title;
   final IconData icon;
+  final Stream<List<NumberSensorData>> Function() getStream;
 
-  SensorInfo(this.colorId, this.value, this.title, this.icon);
+  SensorInfo(this.colorId, this.value, this.title, this.icon, this.getStream);
 }

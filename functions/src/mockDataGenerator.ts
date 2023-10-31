@@ -2,7 +2,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { Timestamp } from "@google-cloud/firestore";
 
-type IntervalUnit = "minutes" | "hours" | "days";
+type IntervalUnit = "seconds" | "minutes" | "hours" | "days";
 
 interface MockDataRequest {
   id: string;
@@ -23,6 +23,8 @@ export const createMockData = functions
 
     const getIntervalMillis = () => {
       switch (intervalUnit) {
+        case "seconds":
+          return 1000;
         case "minutes":
           return 60 * 1000;
         case "hours":

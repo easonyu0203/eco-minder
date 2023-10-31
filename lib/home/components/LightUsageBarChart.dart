@@ -88,25 +88,25 @@ class _LightUsageBarChartState extends State<LightUsageBarChart> {
             String weekDay;
             switch (group.x) {
               case 0:
-                weekDay = '10/26';
+                weekDay = '10/25';
                 break;
               case 1:
-                weekDay = '10/27';
+                weekDay = '10/26';
                 break;
               case 2:
-                weekDay = '10/28';
+                weekDay = '10/27';
                 break;
               case 3:
-                weekDay = '10/29';
+                weekDay = '10/28';
                 break;
               case 4:
-                weekDay = '10/30';
+                weekDay = '10/29';
                 break;
               case 5:
-                weekDay = '10/31';
+                weekDay = '10/30';
                 break;
               case 6:
-                weekDay = '11/1';
+                weekDay = '10/31';
                 break;
               default:
                 throw Error();
@@ -181,25 +181,25 @@ class _LightUsageBarChartState extends State<LightUsageBarChart> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = const Text('26th', style: style);
+        text = const Text('25th', style: style);
         break;
       case 1:
-        text = const Text('27th', style: style);
+        text = const Text('26th', style: style);
         break;
       case 2:
-        text = const Text('28th', style: style);
+        text = const Text('27th', style: style);
         break;
       case 3:
-        text = const Text('29th', style: style);
+        text = const Text('28th', style: style);
         break;
       case 4:
-        text = const Text('30th', style: style);
+        text = const Text('29th', style: style);
         break;
       case 5:
-        text = const Text('31th', style: style);
+        text = const Text('30th', style: style);
         break;
       case 6:
-        text = const Text('1th', style: style);
+        text = const Text('31th', style: style);
         break;
       default:
         text = const Text('', style: style);

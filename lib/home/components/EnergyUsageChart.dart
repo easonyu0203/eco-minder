@@ -21,25 +21,25 @@ class EnergyUsageChart extends StatelessWidget {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = const Text('26th    ', style: style);
+        text = const Text('25th    ', style: style);
         break;
       case 1:
-        text = const Text('27th    ', style: style);
+        text = const Text('26th    ', style: style);
         break;
       case 2:
-        text = const Text('28th    ', style: style);
+        text = const Text('27th    ', style: style);
         break;
       case 3:
-        text = const Text('29th    ', style: style);
+        text = const Text('28th    ', style: style);
         break;
       case 4:
-        text = const Text('30th    ', style: style);
+        text = const Text('29th    ', style: style);
         break;
       case 5:
-        text = const Text('31th    ', style: style);
+        text = const Text('30th    ', style: style);
         break;
       case 6:
-        text = const Text('1th    ', style: style);
+        text = const Text('31th    ', style: style);
         break;
       default:
         throw Error();
