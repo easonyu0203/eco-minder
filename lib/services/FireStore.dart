@@ -94,9 +94,6 @@ class FireStoreService {
           .collection('users')
           .doc(uid)
           .set(myUser.toJson(), SetOptions(merge: true));
-
-      // TODO: Delete this
-      await addEcoMinder(uid, "1");
     } catch (e) {
       throw e;
     }

@@ -38,11 +38,12 @@ class _ConnectEMPageState extends State<ConnectEMPage> {
     FlutterBluePlus.scanResults.listen(
       (List<ScanResult> results) {
         var validDevices = results
-            .where((scanResult) =>
-                scanResult.device.platformName != "" &&
-                scanResult.device.platformName
-                    .toLowerCase()
-                    .contains("ecominder"))
+            .where((scanResult) => scanResult.device.platformName != ""
+                // &&
+                // scanResult.device.platformName
+                //     .toLowerCase()
+                //     .contains("ecominder"),
+                )
             .map((scanResult) => scanResult.device)
             .toList();
 

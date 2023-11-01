@@ -5,13 +5,13 @@ import { Timestamp } from "@google-cloud/firestore";
 type IntervalUnit = "seconds" | "minutes" | "hours" | "days";
 
 interface MockDataRequest {
-  id: string;
+  eco_minder_id: string;
   timeSpan: number;
   intervalUnit: IntervalUnit;
 }
 
 interface DataPoint<T> {
-  id: string;
+  eco_minder_id: string;
   data: T;
   timestamp: Date;
 }
@@ -19,7 +19,7 @@ interface DataPoint<T> {
 export const createMockData = functions
   .region("australia-southeast1")
   .https.onCall(async (data: MockDataRequest, context) => {
-    const { id, timeSpan, intervalUnit } = data;
+    const { eco_minder_id: eco_minder_id, timeSpan, intervalUnit } = data;
 
     const getIntervalMillis = () => {
       switch (intervalUnit) {
@@ -43,7 +43,7 @@ export const createMockData = functions
     const generateDataForSensor = (dataFunc: () => any) => {
       return Array.from({ length: numDataPoints }, () => {
         const point: DataPoint<String> = {
-          id,
+          eco_minder_id: eco_minder_id,
           data: dataFunc(),
           // Convert the millisecond timestamp to a Firestore Timestamp
           timestamp: Timestamp.fromMillis(currentTimestamp).toDate(),

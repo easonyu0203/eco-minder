@@ -32,7 +32,7 @@ export const monitorWeather = functions
 
     const collection = db.collection("location_sensor");
     let latestEntries: {
-      [id: string]: FirebaseFirestore.QueryDocumentSnapshot;
+      [eco_minder_id: string]: FirebaseFirestore.QueryDocumentSnapshot;
     } = {};
 
     const snapshot = await collection.orderBy("timestamp", "desc").get();
@@ -41,27 +41,27 @@ export const monitorWeather = functions
     snapshot.forEach((doc) => {
       const data = doc.data();
       if (
-        !latestEntries[data.id] ||
+        !latestEntries[data.eco_minder_id] ||
         data.timestamp.toDate() >
-          latestEntries[data.id].data().timestamp.toDate()
+          latestEntries[data.eco_minder_id].data().timestamp.toDate()
       ) {
-        latestEntries[data.id] = doc;
+        latestEntries[data.eco_minder_id] = doc;
       }
     });
 
     // For each ID, get the weather using lat and long
-    for (const id in latestEntries) {
-      const latitude = latestEntries[id].data().data.latitude;
-      const longitude = latestEntries[id].data().data.longitude;
+    for (const eco_minder_id in latestEntries) {
+      const latitude = latestEntries[eco_minder_id].data().data.latitude;
+      const longitude = latestEntries[eco_minder_id].data().data.longitude;
 
       // Fetch weather data (You will need to implement this function)
       const weather = await fetchWeather(latitude, longitude);
       console.log(
-        `Weather for ID ${id} at (${latitude}, ${longitude}): ${weather}`
+        `Weather for ID ${eco_minder_id} at (${latitude}, ${longitude}): ${weather}`
       );
 
       await db.collection("outdoor_temp_sensor").add({
-        id: id,
+        eco_minder_id: eco_minder_id,
         timestamp: Timestamp.now(),
         data: weather,
       });

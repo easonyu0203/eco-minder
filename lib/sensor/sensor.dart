@@ -51,7 +51,7 @@ class SensorScreen extends StatelessWidget {
             });
 
             double avg = sum / dataPoints.length;
-            double last = dataPoints.last.data;
+            double last = dataPoints.isEmpty ? -1 : dataPoints.last.data;
 
             return Container(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
