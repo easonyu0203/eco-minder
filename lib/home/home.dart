@@ -86,12 +86,16 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ]),
                     _buildChartCard(
-                        context,
-                        "Estimate Energy Usage",
-                        EstEnergyChart(
-                            points: chartPoints, sensorDatas: dataPoints)),
-                    _buildChartCard(context, "Past Week Light Usage hr",
-                        LightUsageBarChart()),
+                      context,
+                      "Estimate Energy Usage",
+                      EstEnergyChart(
+                          points: chartPoints, sensorDatas: dataPoints),
+                    ),
+                    _buildChartCard(
+                      context,
+                      "Past Week Light Usage hr",
+                      LightUsageBarChart(),
+                    ),
                   ],
                 ),
               ),

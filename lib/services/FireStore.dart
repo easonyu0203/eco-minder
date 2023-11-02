@@ -193,7 +193,7 @@ class FireStoreService {
       streamIndoorTemp(),
       streamOutdoorTemp(),
       streamAirQuality(),
-      streamRecentEstEnergy(30),
+      streamRecentEstEnergy(50),
       (
         NumberSensorData light,
         NumberSensorData indoor,
