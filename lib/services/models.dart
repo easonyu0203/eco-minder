@@ -120,20 +120,23 @@ class SensorDatas {
   final NumberSensorData indoorTemp;
   final NumberSensorData outdoorTemp;
   final NumberSensorData airQuality;
+  final List<NumberSensorData> recentEstEnergy;
 
   SensorDatas({
     required this.lightLevel,
     required this.indoorTemp,
     required this.outdoorTemp,
     required this.airQuality,
+    required this.recentEstEnergy,
   });
 
-  static SensorDatas GetDefault() {
+  static SensorDatas getDefault() {
     return SensorDatas(
       lightLevel: NumberSensorData(data: -1, timestamp: DateTime.now()),
       indoorTemp: NumberSensorData(data: -1, timestamp: DateTime.now()),
       outdoorTemp: NumberSensorData(data: -1, timestamp: DateTime.now()),
       airQuality: NumberSensorData(data: -1, timestamp: DateTime.now()),
+      recentEstEnergy: [NumberSensorData(data: -1, timestamp: DateTime.now())],
     );
   }
 }

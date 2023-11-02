@@ -1,9 +1,9 @@
-import { FieldValue } from "firebase-admin/firestore";
+import { FieldValue, Timestamp } from "firebase-admin/firestore";
 
 export interface DataPoint<T> {
   eco_minder_id: string;
   data: T;
-  timestamp: Date;
+  timestamp: Timestamp;
 }
 
 export interface MyUser {

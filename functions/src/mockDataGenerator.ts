@@ -45,7 +45,7 @@ export const createMockData = functions
           eco_minder_id: eco_minder_id,
           data: dataFunc(),
           // Convert the millisecond timestamp to a Firestore Timestamp
-          timestamp: Timestamp.fromMillis(currentTimestamp).toDate(),
+          timestamp: Timestamp.fromMillis(currentTimestamp),
         };
         currentTimestamp = currentTimestamp - intervalMillis;
         return point;

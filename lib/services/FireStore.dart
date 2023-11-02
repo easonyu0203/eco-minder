@@ -176,23 +176,37 @@ class FireStoreService {
         .map((event) => NumberSensorData.fromJson(event.docs[0].data()));
   }
 
+  Stream<List<NumberSensorData>> streamRecentEstEnergy(int count) {
+    return _firestore
+        .collection('est_energy')
+        .orderBy('timestamp', descending: true)
+        .limit(count)
+        .snapshots()
+        .map((event) => event.docs
+            .map((e) => NumberSensorData.fromJson(e.data()))
+            .toList());
+  }
+
   Stream<SensorDatas> streamSensorDatas() {
-    return Rx.combineLatest4(
+    return Rx.combineLatest5(
       streamLightLevel(),
       streamIndoorTemp(),
       streamOutdoorTemp(),
       streamAirQuality(),
+      streamRecentEstEnergy(30),
       (
         NumberSensorData light,
         NumberSensorData indoor,
         NumberSensorData outdoor,
         NumberSensorData air,
+        List<NumberSensorData> estEnergys,
       ) =>
           SensorDatas(
         lightLevel: light,
         indoorTemp: indoor,
         outdoorTemp: outdoor,
         airQuality: air,
+        recentEstEnergy: estEnergys,
       ),
     );
   }

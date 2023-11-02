@@ -17,6 +17,7 @@ import {
   lightNotificationService,
 } from "./notifications/singleSensorNotificationService";
 import { ecoMinderModeChanger } from "./notifications/changeMode";
+import { estimateEnergyUsageService } from "./estimate_energy";
 // import { lightOnNoPplService } from "./notifications/lightOnNoPpl";
 
 export {
@@ -27,6 +28,7 @@ export {
   // lightOnNoPplService,
   lightNotificationService,
   airPolluteNotificationService,
+  estimateEnergyUsageService,
 };
 
 export const hello = functions.https.onCall((data, context) => {

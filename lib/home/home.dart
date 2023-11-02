@@ -6,6 +6,7 @@ import 'package:eco_minder_flutter_app/sensor/sensor.dart';
 import 'package:eco_minder_flutter_app/share/SensorCard.dart';
 import 'package:eco_minder_flutter_app/services/FireStore.dart';
 import 'package:eco_minder_flutter_app/services/models.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -22,14 +23,26 @@ class HomeScreen extends StatelessWidget {
       ),
       body: StreamBuilder(
           stream: FireStoreService().streamSensorDatas(),
-          initialData: SensorDatas.GetDefault(),
+          initialData: SensorDatas.getDefault(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }
 
             SensorDatas sensorDatas =
-                snapshot.hasData ? snapshot.data! : SensorDatas.GetDefault();
+                snapshot.hasData ? snapshot.data! : SensorDatas.getDefault();
+
+            List<NumberSensorData> dataPoints =
+                sensorDatas.recentEstEnergy.reversed.toList();
+            List<FlSpot> chartPoints = dataPoints.asMap().entries.map((entry) {
+              int index = entry.key;
+              NumberSensorData e = entry.value;
+              double value = e.data;
+              if (value.isNaN) {
+                value = 0;
+              }
+              return FlSpot(index.toDouble(), value);
+            }).toList();
 
             return Container(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
@@ -73,7 +86,10 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ]),
                     _buildChartCard(
-                        context, "Past Week Energy Usage", EnergyUsageChart()),
+                        context,
+                        "Estimate Energy Usage",
+                        EstEnergyChart(
+                            points: chartPoints, sensorDatas: dataPoints)),
                     _buildChartCard(context, "Past Week Light Usage hr",
                         LightUsageBarChart()),
                   ],
