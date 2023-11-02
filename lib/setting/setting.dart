@@ -134,7 +134,7 @@ class SettingScreen extends StatelessWidget {
                           EcoMinderMode.alert.toString().split(".").last
                       ? FontAwesomeIcons.check
                       : null,
-                )
+                ),
               ]
             : [
                 SettingButton(

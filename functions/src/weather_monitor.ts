@@ -14,7 +14,7 @@ export const monitorWeather = functions
       .doc("lastRunTimestamp")
       .get();
     const currentTime = Timestamp.now();
-    const thirtyMinutesMillis = 30 * 60 * 1000;
+    const thirtyMinutesMillis = 10 * 60 * 1000;
 
     if (serverStateDoc.exists) {
       const lastRunTimestamp = serverStateDoc.data()?.timestamp;

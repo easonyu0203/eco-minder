@@ -12,8 +12,22 @@ admin.initializeApp();
 import { createMockData } from "./mockDataGenerator";
 import { deleteSensorData } from "./delete_data";
 import { monitorWeather } from "./weather_monitor";
+import {
+  airPolluteNotificationService,
+  lightNotificationService,
+} from "./notifications/singleSensorNotificationService";
+import { ecoMinderModeChanger } from "./notifications/changeMode";
+// import { lightOnNoPplService } from "./notifications/lightOnNoPpl";
 
-export { createMockData, deleteSensorData, monitorWeather };
+export {
+  createMockData,
+  deleteSensorData,
+  monitorWeather,
+  ecoMinderModeChanger,
+  // lightOnNoPplService,
+  lightNotificationService,
+  airPolluteNotificationService,
+};
 
 export const hello = functions.https.onCall((data, context) => {
   return { message: "Hello from Firebase!" };

@@ -61,11 +61,7 @@ class EMProvisionState with ChangeNotifier {
 
   Future<void> sendViaBluetooth(String msg) async {
     assert(endpointCharacteristic != null);
-    endpointCharacteristic!.setNotifyValue(true);
-    endpointCharacteristic!.lastValueStream.listen((value) {
-      // Handle the new value
-      print("value: ${utf8.decode(value)}");
-    });
+    print("sending: $msg");
     List<int> dataToSend = utf8.encode(msg);
     await endpointCharacteristic!.write(dataToSend);
   }

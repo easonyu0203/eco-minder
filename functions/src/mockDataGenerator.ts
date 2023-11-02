@@ -1,8 +1,11 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import { Timestamp } from "@google-cloud/firestore";
+import { DataPoint } from "./types";
+import { createEcoMinderNUserIfNotExist } from "./utils";
 
 type IntervalUnit = "seconds" | "minutes" | "hours" | "days";
+const db = admin.firestore();
 
 interface MockDataRequest {
   eco_minder_id: string;
@@ -10,16 +13,12 @@ interface MockDataRequest {
   intervalUnit: IntervalUnit;
 }
 
-interface DataPoint<T> {
-  eco_minder_id: string;
-  data: T;
-  timestamp: Date;
-}
-
 export const createMockData = functions
   .region("australia-southeast1")
   .https.onCall(async (data: MockDataRequest, context) => {
     const { eco_minder_id: eco_minder_id, timeSpan, intervalUnit } = data;
+
+    await createEcoMinderNUserIfNotExist(eco_minder_id);
 
     const getIntervalMillis = () => {
       switch (intervalUnit) {
@@ -55,7 +54,7 @@ export const createMockData = functions
 
     const mockData = {
       body_sensor: generateDataForSensor(() =>
-        Math.random() > 0.5 ? "true" : "false"
+        Math.random() > 0.5 ? "1" : "0"
       ),
       location_sensor: generateDataForSensor(() => {
         return {
@@ -71,7 +70,6 @@ export const createMockData = functions
       iaq_sensor: generateDataForSensor(() => randomFloat(0, 500).toFixed(2)),
     };
 
-    const db = admin.firestore();
     const batch = db.batch();
 
     for (const sensorPath in mockData) {

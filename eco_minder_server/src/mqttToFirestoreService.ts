@@ -39,30 +39,35 @@ export const startMQTTService = () => {
         db.collection("body_sensor").add({
           data: data.data,
           eco_minder_id: data.id,
+          timestamp: data.timestamp,
         });
         break;
       case "/sensor/location":
         db.collection("location_sensor").add({
           data: data.data,
           eco_minder_id: data.id,
+          timestamp: data.timestamp,
         });
         break;
       case "/sensor/temp":
         db.collection("temp_sensor").add({
           data: data.data,
           eco_minder_id: data.id,
+          timestamp: data.timestamp,
         });
         break;
       case "/sensor/light":
         db.collection("light_sensor").add({
           data: data.data,
           eco_minder_id: data.id,
+          timestamp: data.timestamp,
         });
         break;
       case "/sensor/iaq":
         db.collection("iaq_sensor").add({
           data: data.data,
           eco_minder_id: data.id,
+          timestamp: data.timestamp,
         });
         break;
       default:

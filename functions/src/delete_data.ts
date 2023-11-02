@@ -23,6 +23,7 @@ export const deleteSensorData = functions
 
     // Delete each collection
     for (const collectionPath of Collections) {
+      if (collectionPath == "outdoor_temp_sensor") continue;
       await deleteCollection(collectionPath);
     }
 

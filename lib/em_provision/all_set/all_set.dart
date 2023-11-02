@@ -17,6 +17,9 @@ class _AllSetPageState extends State<AllSetPage> {
   void initState() {
     super.initState();
 
+    EMProvisionState state = context.read<EMProvisionState>();
+    state.sendViaBluetooth("done");
+
     // add EcoMinder for user
     FireStoreService().addEcoMinder(FireAuthService().user!.uid,
         context.read<EMProvisionState>().eco_minder_id!);

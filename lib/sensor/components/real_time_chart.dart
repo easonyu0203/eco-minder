@@ -56,14 +56,14 @@ class RealTimeChart extends StatelessWidget {
             bottomTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-                interval: xInterval,
+                interval: xInterval == 0 ? null : xInterval,
                 getTitlesWidget: bottomTitleWidgets,
               ),
             ),
             leftTitles: AxisTitles(
               sideTitles: SideTitles(
                 showTitles: true,
-                interval: yInterval,
+                interval: yInterval == 0 ? null : yInterval,
                 getTitlesWidget: (value, meta) =>
                     leftTitleWidgets(value, meta, minY, maxY),
                 reservedSize: 40,

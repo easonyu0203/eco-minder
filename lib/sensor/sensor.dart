@@ -73,7 +73,7 @@ class SensorScreen extends StatelessWidget {
                           ? Container()
                           : _buildChartCard(
                               context,
-                              "Real-Time ${sensorParam.title} Chart",
+                              "Real-Time ${sensorParam.title}",
                               RealTimeChart(
                                   points: chartPoints,
                                   sensorDatas: dataPoints)),

@@ -25,6 +25,13 @@ class FireStoreService {
     }, SetOptions(merge: true));
   }
 
+  Future<void> removeEcoMinderFromUser() async {
+    User user = FireAuthService().user!;
+    await _firestore.collection('users').doc(user.uid).set({
+      "eco_minder_id": null,
+    }, SetOptions(merge: true));
+  }
+
   Future<EcoMinder?> getEcoMinder() async {
     MyUser myUser = await getMyUser();
 
